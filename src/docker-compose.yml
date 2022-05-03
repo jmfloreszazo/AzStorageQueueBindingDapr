@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+ 
+  pub-microservice:
+    image: ${DOCKER_REGISTRY-}publisher
+    build:
+      context: .
+      dockerfile: PubSubDarpSample.Publisher/Dockerfile
+    stdin_open: true
+    tty: true
+
+  pub-microservice-dapr:
+    image: "daprio/daprd:1.7.0"
+    network_mode: "service:pub-microservice"
+    depends_on:
+      - pub-microservice
+
+  bindings-microservice:
+    image: ${DOCKER_REGISTRY-}bindings
+    build:
+      context: .
+      dockerfile: PubSubDarpSample.Bindings/Dockerfile
+    stdin_open: true
+    tty: true
+
+  bindings-microservice-dapr:
+    image: "daprio/daprd:1.7.0"
+    network_mode: "service:bindings-microservice"
+    depends_on:
+      - bindings-microservice

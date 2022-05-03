@@ -1,0 +1,15 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: azurequeueoutput
+spec:
+  type: bindings.azure.storagequeues
+  version: v1
+  metadata:
+  - name: storageAccount
+    value: "mydaprdemostorageaccount"
+  - name: storageAccessKey
+    value: "YOUR_STORAGE_ACCESS_KEY"
+  - name: queue
+    value: "myqueue"
+    

@@ -9,6 +9,6 @@ spec:
   - name: storageAccount
     value: "mydaprdemostorageaccount"
   - name: storageAccessKey
-    value: "A/EOqB/rVJ/2z41EcTIFAOpVi1zrnzeZ+lShqPGJvWloC6DJxrd1oj4rQr6WOojrNUHVVOmxvD4+PBgxIrE/KQ=="
+    value: "YOUR_STORAGE_ACCESS_KEY"
   - name: queue
     value: "myqueue"

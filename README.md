@@ -1,4 +1,4 @@
-# C# DAPR Binding with Azure Event Hub
+# Dapr Binding with Azure Storage Queue in C#
 
 [In this links you can view the official documentation about Bindings](https://docs.dapr.io/reference/components-reference/supported-bindings/).
 
@@ -14,40 +14,10 @@ az group create -l westeurope -n MyResourceGroup
 az storage account create -n mydaprdemostorageaccount -g MyResourceGroup -l westeurope --sku Standard_LRS
 ```
 
-And the blob container:
+And queue:
 
 ```terminal
-az storage container create -n mydaprdemostoragecontainer --public-access blob --account-name mydaprdemostorageaccount
-```
-
-## Create Azure Event Hub:
-
-```terminal
-az eventhubs namespace create --name mydaprdemonamespace --resource-group MyResourceGroup -l westeurope
-```
-
-Add the Event Hub:
-
-```terminal
-az eventhubs eventhub create --resource-group MyResourceGroup --namespace-name mydaprdemonamespace --name mydaprdemoeventhub --message-retention 1 --partition-count 1
-```
-
-You need to add a [new capture](https://docs.microsoft.com/en-US/azure/event-hubs/event-hubs-capture-enable-through-portal) linked with **mydaprdemostoragecontainer**
-
-Add policies for send & listener:
-
-```terminal
-az eventhubs eventhub authorization-rule create --resource-group MyResourceGroup --namespace-name mydaprdemonamespace --eventhub-name mydaprdemoeventhub --name send --rights send
-```
-
-```terminal
-az eventhubs eventhub authorization-rule create --resource-group MyResourceGroup --namespace-name mydaprdemonamespace --eventhub-name mydaprdemoeventhub --name listen --rights listen
-```
-
-Add a consumer group:
-
-```terminal
-az eventhubs eventhub consumer-group create --resource-group myresourcegroup --namespace-name mydaprdemonamespace --eventhub-name mydaprdemoeventhub --name consumergroupbinding
+az storage queue create -n myqueue --account-name mydaprdemostorageaccount
 ```
 
 [![GitKraken shield](https://img.shields.io/badge/GitKraken-Legendary%20Git%20Tools-teal?style=plastic&logo=gitkraken)](https://gitkraken.com/invite/sUviHf86)
